@@ -15,14 +15,6 @@ If you're using the application for the first time, you've got to seed the datab
 $ npm run seed:db
 ```
 
-Don't forget to create .env file for the project with keys :
-```PROJECT_PORT``` 
-```DB_HOST``` 
-```DB_USER``` 
-```DB_PASSWORD``` 
-```DB_NAME``` 
-```SECRET``` 
-
 ## APIs
 
 ```POST localhost:3002/auth/login``` 	=> token
