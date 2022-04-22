@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from '../app.module';
 import * as bcrypt from 'bcrypt';
 import * as faker from "faker";
-import { User } from "src/users/entities/user.entity";
+import { User, UserRoleEnum } from "src/users/entities/user.entity";
 import { UsersService } from "src/users/users.service";
 
 async function bootstrap() {
@@ -20,10 +20,11 @@ async function bootstrap() {
     user.lastname = faker.name.lastName();
     user.phone = faker.datatype.number({ 'min': 10000000, 'max': 99999999 })
     user.birthday = faker.date.past();
-    let password = i % 3 == 0 ? 'admin' : 'user';
+    let password = 'user';
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
     user.password = hashedPassword;
+    user.role = i % 3 == 0 ? UserRoleEnum.admin : UserRoleEnum.user;
     await userService.create(user);
   }
   console.log('end seeding users');
