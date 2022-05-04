@@ -10,6 +10,7 @@ async function bootstrap() {
   dotenv.config();
   app.use(morgan('dev'));
   app.use(helmet());
+  app.enableCors();
   app.enableVersioning({
     type: VersioningType.URI,
   });
